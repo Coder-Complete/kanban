@@ -1,0 +1,37 @@
+backend project
+
+kanban
+- this is a good project for practicing backend before getting into auth
+- this design is pretty simple for a scrum app and ignores a lot of features that jira has
+
+data tables
+- boards
+- columns in boards
+- tasks (belong to boards i suppose)
+    - title
+    - description
+    - subtasks
+    - status
+
+
+my additions
+- things jira has that the design doesn’t
+- epics and stories?
+- projected timelines based on estimates of all the tickets belonging to a story?
+- comments on tickets
+- 
+
+considerations
+- for subtasks - will have to search all tasks under that board, so will need db that supports text search
+
+
+steps
+1. connect backend to vite app locally
+- https://nodejs.org/en/docs/guides/getting-started-guide
+  a. backend is vanilla
+  b. then use express
+2. deploy and backend is connected to frontend in deployed version
+3. set up db and connect to backend
+4. define & implement db schemas
+5. build the routes
+6. build thre frontend
