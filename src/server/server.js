@@ -1,12 +1,17 @@
 import http from "http";
 
 const hostname = "127.0.0.1";
-const port = 3000;
+const port = 5000;
 
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello World");
+  if (req.url === "/api" && req.method === "GET") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write("This is the api");
+    res.end();
+  } else {
+    res.writeHead(404, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Route not found" }));
+  }
 });
 
 server.listen(port, hostname, () => {

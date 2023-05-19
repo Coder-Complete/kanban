@@ -26,12 +26,15 @@ considerations
 
 
 steps
-1. connect backend to vite app locally
-- https://nodejs.org/en/docs/guides/getting-started-guide
-  a. backend is vanilla
-  b. then use express
-2. deploy and backend is connected to frontend in deployed version
-3. set up db and connect to backend
-4. define & implement db schemas
-5. build the routes
-6. build thre frontend
+0. x - set up react app w/ vite
+1. set up vanilla node.js server
+  - https://www.section.io/engineering-education/a-raw-nodejs-rest-api-without-frameworks-such-as-express/
+2. connect backend to frontend
+  - https://codedamn.com/news/reactjs/how-to-connect-react-with-node-js
+3. build a backend until raw js gets ugly
+4. rewrite w/ express
+5. deploy and backend is connected to frontend in deployed version
+6. set up db and connect to backend (locally and deployed)
+7. define & implement db schemas
+8. build the routes
+9. build the frontend
