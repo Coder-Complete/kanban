@@ -1,12 +1,26 @@
 import http from "http";
 
 const hostname = "127.0.0.1";
-const port = 3000;
+const port = 5000;
 
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello World");
+  console.log("req received");
+  console.log(req.url);
+  // res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  if (req.url === "/" && req.method === "GET") {
+    console.log("matched route");
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write(JSON.stringify({ message: "This is the home page" }));
+    res.end();
+  } else if (req.url === "/api" && req.method === "GET") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write(JSON.stringify({ message: "This is the API" }));
+    res.end();
+  } else {
+    res.writeHead(404, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Route not found" }));
+  }
 });
 
 server.listen(port, hostname, () => {
