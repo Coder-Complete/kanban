@@ -4,13 +4,18 @@ const hostname = "127.0.0.1";
 const port = 5000;
 
 const server = http.createServer((req, res) => {
+  console.log("req received");
+  console.log(req.url);
+  // res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
   if (req.url === "/" && req.method === "GET") {
+    console.log("matched route");
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.write("This is the home page");
+    res.write(JSON.stringify({ message: "This is the home page" }));
     res.end();
   } else if (req.url === "/api" && req.method === "GET") {
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.write("This is the api");
+    res.write(JSON.stringify({ message: "This is the API" }));
     res.end();
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
