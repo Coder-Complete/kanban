@@ -9,7 +9,6 @@ const server = http.createServer((req, res) => {
   // res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
   if (req.url === "/" && req.method === "GET") {
-    console.log("matched route");
     res.writeHead(200, { "Content-Type": "application/json" });
     res.write(JSON.stringify({ message: "This is the home page" }));
     res.end();
