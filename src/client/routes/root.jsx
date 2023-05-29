@@ -6,6 +6,9 @@ export default function Root() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        const p = document.createElement("p");
+        p.innerText = data.message;
+        document.body.appendChild(p);
       })
       .catch((err) => {
         console.log(err);
