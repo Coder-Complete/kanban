@@ -27,14 +27,14 @@ considerations
 
 steps
 0. x - set up react app w/ vite
-1. set up vanilla node.js server
+1. x - set up vanilla node.js server
   - https://www.section.io/engineering-education/a-raw-nodejs-rest-api-without-frameworks-such-as-express/
-2. connect backend to frontend
+2. x - connect backend to frontend
   - https://codedamn.com/news/reactjs/how-to-connect-react-with-node-js
   - https://www.freecodecamp.org/news/3-things-to-consider-before-deploying-your-first-full-stack-app/
   - local is simple: frontend is deployed at port 3000, backend at 5000, frontend requests from 127.0.0.1:5000
-3. nodemon
-4. build a backend until raw js gets ugly
+3. x - nodemon
+4. x - build a backend until raw js gets ugly
 5. rewrite w/ express (benefits - easy org, plugin libraries)
 6. deploy and backend is connected to frontend in deployed version
 7. set up db and connect to backend (locally and deployed)
