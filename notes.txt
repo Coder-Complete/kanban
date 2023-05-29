@@ -13,6 +13,15 @@ data tables
     - subtasks
     - status
 
+- boards
+  - columns
+  - name
+- tasks
+  - name
+  - description
+  - time estimate
+  - status
+
 
 my additions
 - things jira has that the design doesn’t
@@ -35,9 +44,10 @@ steps
   - local is simple: frontend is deployed at port 3000, backend at 5000, frontend requests from 127.0.0.1:5000
 3. x - nodemon
 4. x - build a backend until raw js gets ugly
-5. rewrite w/ express (benefits - easy org, plugin libraries)
-6. deploy and backend is connected to frontend in deployed version
-7. set up db and connect to backend (locally and deployed)
-9. define & implement db schemas
+5. set up db and connect to backend (postgres - can do more, open source. mysql - simpler. companies prefer postgres i'd imagine)
+6. rewrite w/ express (benefits - easy org, plugin libraries)
+7. deploy and backend is connected to frontend and db is connected to backend
+8. define & implement db schemas
 9. build the routes
 10. build the frontend
+11. mention firebase / supabase and other options (pro - easy to get going, con - can get expensive once locked in and app scales)
