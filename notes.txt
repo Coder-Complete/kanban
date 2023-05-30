@@ -14,14 +14,15 @@ steps
   - local is simple: frontend is deployed at port 3000, backend at 5000, frontend requests from 127.0.0.1:5000
 3. x - nodemon
 4. x - set up db and connect to backend (postgres - can do more, open source. mysql - simpler. companies prefer postgres i'd imagine)
-5. deploy and backend is connected to frontend and db is connected to backend
-6. build a backend until raw js gets ugly
-7. rewrite w/ express (benefits - easy org, plugin libraries)
-8. postman
-9. define & implement db schemas
-10. build the routes
-11. build the frontend
-12. mention firebase / supabase and other options (pro - easy to get going, con - can get expensive once locked in and app scales)
+5. x - frontend is connected to backend is connected to db (locally)
+6. deploy and all is connected
+7. build a backend until raw js gets ugly
+8. rewrite w/ express (benefits - easy org, plugin libraries)
+9. postman
+10. define & implement db schemas
+11. build the routes
+12. build the frontend
+13. mention firebase / supabase and other options (pro - easy to get going, con - can get expensive once locked in and app scales)
 
 ***** db *****
 data tables

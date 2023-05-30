@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const connectDb = async () => {
+async function queryDb(query) {
   try {
     const client = new pg.Client({
       user: process.env.PGUSER,
@@ -16,28 +16,28 @@ const connectDb = async () => {
     });
 
     await client.connect();
-    const res = await client.query("SELECT * FROM tasks");
-    console.log(res);
+    const res = await client.query(query);
     await client.end();
+    return res.rows;
   } catch (error) {
     console.log(error);
+    return [];
   }
-};
-
-connectDb();
+}
 
 const hostname = "127.0.0.1";
 const port = 5000;
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   console.log("req received");
   console.log(req.url);
   res.setHeader("Access-Control-Allow-Origin", "*");
   // res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
   if (req.url === "/" && req.method === "GET") {
     console.log("matched route");
+    let rows = await queryDb("select * from tasks;");
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.write(JSON.stringify({ message: "This is the home page" }));
+    res.write(JSON.stringify(rows));
     res.end();
   } else if (req.url === "/api" && req.method === "GET") {
     res.writeHead(200, { "Content-Type": "application/json" });
