@@ -1,13 +1,13 @@
 import http from "http";
 
-import { Client } from "pg";
+import pg from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const connectDb = async () => {
   try {
-    const client = new Client({
+    const client = new pg.Client({
       user: process.env.PGUSER,
       host: process.env.PGHOST,
       database: process.env.PGDATABASE,
@@ -16,7 +16,7 @@ const connectDb = async () => {
     });
 
     await client.connect();
-    const res = await client.query("SELECT * FROM some_table");
+    const res = await client.query("SELECT * FROM tasks");
     console.log(res);
     await client.end();
   } catch (error) {
