@@ -31,8 +31,8 @@ const port = 5000;
 const server = http.createServer(async (req, res) => {
   console.log("req received");
   console.log(req.url);
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  // res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader("Access-Control-Allow-Methods", "*"); // https://stackoverflow.com/questions/9459949/access-control-allow-origin-not-working
   if (req.url === "/" && req.method === "GET") {
     console.log("matched route");
     let rows = await queryDb("select * from tasks;");
