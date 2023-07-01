@@ -5,6 +5,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+// const hostname = "127.0.0.1";
+const port = process.env.PORT || 5000;
+
 async function queryDb(query) {
   try {
     const client = new pg.Client({
@@ -24,9 +27,6 @@ async function queryDb(query) {
     return [];
   }
 }
-
-const hostname = "127.0.0.1";
-const port = 5000;
 
 const server = http.createServer(async (req, res) => {
   console.log("req received");
@@ -49,6 +49,10 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(port, () => {
+  console.log(`Server running at port ${port}`);
 });
+
+// server.listen(port, hostname, () => {
+//   console.log(`Server running at http://${hostname}:${port}/`);
+// });
