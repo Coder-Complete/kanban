@@ -11,11 +11,11 @@ steps
 2. x - connect backend to frontend
   - https://codedamn.com/news/reactjs/how-to-connect-react-with-node-js
   - https://www.freecodecamp.org/news/3-things-to-consider-before-deploying-your-first-full-stack-app/
-  - local is simple: frontend is deployed at port 3000, backend at 5000, frontend requests from 127.0.0.1:5000
+  - local is simple: frontend is deployed at port 3000, backend at 5005, frontend requests to 127.0.0.1:5005
 3. x - nodemon
 4. x - set up db and connect to backend (postgres - can do more, open source. mysql - simpler. companies prefer postgres i'd imagine)
 5. x - frontend is connected to backend is connected to db (locally)
-6. deploy and all is connected
+6. x - deploy and all is connected
 7. build a backend until raw js gets ugly
 8. rewrite w/ express (benefits - easy org, plugin libraries (middleware), cors middleware makes life easier)
 9. postman
@@ -26,16 +26,41 @@ steps
 
 ***** db *****
 data tables
-- boards
-- columns in boards
-  - column id
-  - board id
-- tasks (belong to boards i suppose)
-    - title
-    - description
-    - subtasks
-    - status
+https://www.youtube.com/watch?v=7Ck8wSoKJXI
 
+- x for now - site_user (user is often used by db already)
+  - id (primary key)
+  - email_address
+  - password
+  - signup_date
+- board
+  - id (primary key)
+  - x for now - user_id (foreign key)
+  - name
+  - created_date
+  - x - is_public
+- column
+  - id (primary key)
+  - board_id (foreign key)
+  - name
+  - position (numeric, where it is on the board)
+- task (belong to boards i suppose)
+  - id (primary key)
+  - column_id (foreign key)
+  - name
+  - description
+  - created_date
+  - status
+  - ...subtasks
+- x for now - comments (on cards)
+  - id (primary key)
+  - user_id (foreign key)
+  - task_id (foreign key)
+  - comment
+  - created_date
+- x for now - board_member (what users can see what boards)
+  - user_id (foreign key)
+  - board_id (foreign key)
 
 - boards
   - columns
@@ -49,10 +74,16 @@ data tables
 
 my additions
 - things jira has that the design doesn’t
-- epics and stories?
+- epics and stories? (or label cards)
 - projected timelines based on estimates of all the tickets belonging to a story?
 - comments on tickets
-- 
+- trello has ability to add checklist to task
+- users
+- users can have access to board or not
+- users can be members of task to see updates
+- task has due date
+- can attach files and pictures to task
+- can set reminder for task
 
 considerations
 - for subtasks - will have to search all tasks under that board, so will need db that supports text search

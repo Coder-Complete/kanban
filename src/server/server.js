@@ -6,17 +6,22 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // const hostname = "127.0.0.1";
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5005;
 
 async function queryDb(query) {
   try {
-    const client = new pg.Client({
-      user: process.env.PGUSER,
-      host: process.env.PGHOST,
-      database: process.env.PGDATABASE,
-      password: process.env.PGPASSWORD,
-      port: process.env.PGPORT,
-    });
+    console.log(process.env.PG_CONNECTION_STRING);
+    const client = new pg.Client(
+      process.env.PGUSER
+        ? {
+            user: process.env.PGUSER,
+            host: process.env.PGHOST,
+            database: process.env.PGDATABASE,
+            password: process.env.PGPASSWORD,
+            port: process.env.PGPORT,
+          }
+        : process.env.PG_CONNECTION_STRING
+    );
 
     await client.connect();
     const res = await client.query(query);
@@ -31,11 +36,18 @@ async function queryDb(query) {
 const server = http.createServer(async (req, res) => {
   console.log("req received");
   console.log(req.url);
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  console.log(req.headers.origin);
+  const allowedOrigins = [
+    "http://localhost:5173",
+    "https://kanban-frontend.onrender.com",
+  ];
+  if (allowedOrigins.includes(req.headers.origin)) {
+    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+  }
   res.setHeader("Access-Control-Allow-Methods", "*"); // https://stackoverflow.com/questions/9459949/access-control-allow-origin-not-working
   if (req.url === "/" && req.method === "GET") {
     console.log("matched route");
-    let rows = await queryDb("select * from tasks;");
+    let rows = await queryDb("select * from board;");
     res.writeHead(200, { "Content-Type": "application/json" });
     res.write(JSON.stringify(rows));
     res.end();

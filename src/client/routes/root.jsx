@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 
 export default function Root() {
-  const [tasks, setTasks] = useState([]);
+  const [boards, setBoards] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000")
+    console.log(import.meta.env.VITE_BACKEND_URL);
+    // fetch("http://127.0.0.1:5005")
+    fetch(import.meta.env.VITE_BACKEND_URL)
       .then((res) => res.json())
       .then((dataRows) => {
         console.log(dataRows);
-        setTasks(dataRows);
+        setBoards(dataRows);
       })
       .catch((err) => {
         console.log(err);
@@ -17,9 +19,9 @@ export default function Root() {
   return (
     <>
       <div id="root-layout">
-        <h1>Tasks</h1>
-        {tasks.map((task) => (
-          <p key={Math.random()}>{task.something_else}</p>
+        <h1>Boards</h1>
+        {boards.map((board) => (
+          <p key={Math.random()}>{board.name}</p>
         ))}
       </div>
     </>
